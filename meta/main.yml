@@ -1,0 +1,13 @@
+---
+galaxy_info:
+  author: Guillaume Royer
+  description: Install automated backups on Trellis
+  license: "MIT"
+  min_ansible_version: 2.2
+  platforms:
+  - name: Ubuntu
+    versions:
+    - xenial
+  categories:
+  - development
+  - web
