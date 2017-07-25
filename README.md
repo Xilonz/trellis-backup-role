@@ -14,7 +14,7 @@ Add the role and its dependencies to the `requirements.yml` file of Trellis :
 
 - name: Stouts.backup
   src: Stouts.backup
-  version: 3.5.0
+  version: 3.4.5
 ```
 
 Run `ansible-galaxy install -r requirements.yml` to install the new role.
@@ -24,7 +24,7 @@ Then, add the roles to the `server.yml` :
 ```yaml
 roles:
   ... other Trellis roles ...
-  - { role: backup, tags: [backup] }
+  - { role: trellis-backup, tags: [backup] }
   - { role: Stouts.backup, tags: [backup] }
 ```
 
