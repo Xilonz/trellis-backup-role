@@ -29,6 +29,7 @@
         target: "{{ item.value.backup.target }}/uploads"
         target_user: "{{ site_env.backup_target_user }}"
         target_pass: "{{ site_env.backup_target_pass }}"
+        params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
     # Backup database
@@ -38,6 +39,7 @@
         target: "{{ item.value.backup.target }}/database"
         target_user: "{{ site_env.backup_target_user }}"
         target_pass: "{{ site_env.backup_target_pass }}"
+        params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
   when: site_uses_backup
