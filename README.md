@@ -66,6 +66,18 @@ and production, but only the production server actually creating the backups.
 
 Read [all duplicity URL formats (and potential targets)](http://duplicity.nongnu.org/duplicity.1.html#sect7).
 
+### vault.yml
+
+Add credentials to vault.yml
+
+<pre>
+example.com:
+  env:
+    backup_target_user: user
+    backup_target_pass: password
+</pre>
+
+
 ## Restore
 
 Once the profile are installed,
