@@ -17,8 +17,8 @@
     backup_user: "{{ admin_user }}"
     backup_group: sudo
 
-    backup_mysql_user: "{{ mysql_root_user }}"
-    backup_mysql_pass: "{{ mysql_root_password }}"
+    backup_mysql_user: "{{ item.key | underscore }}"
+    backup_mysql_pass: "{{ site_env.db_password }}"
 
     # Define the backup jobs
     backup_profiles:
