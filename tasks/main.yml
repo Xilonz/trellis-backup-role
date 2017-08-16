@@ -2,6 +2,7 @@
 - name: Ensure python pip and paramiko dependencies are installed
   apt:
     name:
+      - python-openssl
       - python-pip
       - python-dev
       - libffi-dev
