@@ -75,6 +75,21 @@ sudo duply website_name_database restore
 sudo duply website_name_uploads restore
 ```
 
+## S3 Support
+
+There is a known issue when uploading to S3 buckets that only accept V4
+signatures. In order to successfully upload, you'll need to add a little bit to
+your `wordpress_sites.yml`'s `backup:` key:
+
+```
+wordpress_sites:
+  example.com:
+    <b>backup:</b>
+      <b># ... </b>
+      <b>params:</b>
+        <b>- 'export S3_USE_SIGV4="True"'</b>
+```
+
 ## License
 
 MIT
