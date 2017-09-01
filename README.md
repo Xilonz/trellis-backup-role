@@ -10,7 +10,7 @@ Add the role and its dependencies to the `requirements.yml` file of Trellis :
 ```yaml
 - name: trellis-backup
   src: guilro.trellis-backup
-  version: 1.1.0
+  version: 1.2.0
 
 - name: Stouts.backup
   src: Stouts.backup
