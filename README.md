@@ -71,6 +71,8 @@ Read [all duplicity URL formats (and potential targets)](http://duplicity.nongnu
 Add credentials to vault.yml
 
 <pre>
+vault_mysql_backup_password: "Generate a random string here"
+
 example.com:
   env:
     backup_target_user: user

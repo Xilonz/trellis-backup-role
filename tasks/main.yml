@@ -13,13 +13,23 @@
     name: paramiko
     state: present
 
+- name: Create backup mysql user
+  mysql_user:
+    name: "{{ mysql_backup_user }}"
+    password: "{{ vault_mysql_backup_password }}"
+    host: localhost
+    priv: "*.*:SELECT,SHOW VIEW,TRIGGER,LOCK TABLES,RELOAD,FILE"
+    state: present
+    login_user: "{{ mysql_root_user }}"
+    login_password: "{{ mysql_root_password }}"
+
 - name: List backup jobs
   set_fact:
     backup_user: "{{ admin_user }}"
     backup_group: sudo
 
-    backup_mysql_user: "{{ mysql_root_user }}"
-    backup_mysql_pass: "{{ mysql_root_password }}"
+    backup_mysql_user: "{{ mysql_backup_user }}"
+    backup_mysql_pass: "{{ vault_mysql_backup_password }}"
 
     # Define the backup jobs
     backup_profiles:
