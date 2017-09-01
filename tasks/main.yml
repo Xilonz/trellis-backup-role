@@ -18,6 +18,9 @@
     backup_user: "{{ admin_user }}"
     backup_group: sudo
 
+    backup_mysql_user: "{{ mysql_root_user }}"
+    backup_mysql_pass: "{{ mysql_root_password }}"
+
     # Define the backup jobs
     backup_profiles:
     # Backup uploads
@@ -32,8 +35,6 @@
 
     # Backup database
       - name: "{{ item.key }}_database"
-        backup_mysql_user: "{{ item.key | underscore }}"
-        backup_mysql_pass: "{{ site_env.db_password }}"
         schedule: "{{ item.value.backup.schedule | default(omit) }}"
         source: "mysql://{{ item.key | underscore }}_{{ env }}"          # Backup prefixes: postgresql://, maysql://, mongo://
         target: "{{ item.value.backup.target }}/database"
