@@ -1,28 +1,4 @@
 ---
-- name: Ensure python pip and paramiko dependencies are installed
-  apt:
-    name:
-      - python-openssl
-      - python-pip
-      - python-dev
-      - libffi-dev
-    state: present
-
-- name: Ensure paramiko is installed
-  pip:
-    name: paramiko
-    state: present
-
-- name: Create backup mysql user
-  mysql_user:
-    name: "{{ mysql_backup_user }}"
-    password: "{{ vault_mysql_backup_password }}"
-    host: localhost
-    priv: "*.*:SELECT,SHOW VIEW,TRIGGER,LOCK TABLES,RELOAD,FILE"
-    state: present
-    login_user: "{{ mysql_root_user }}"
-    login_password: "{{ mysql_root_password }}"
-
 - name: List backup jobs
   set_fact:
     backup_user: "{{ admin_user }}"
