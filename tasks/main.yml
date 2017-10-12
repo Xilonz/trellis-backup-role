@@ -4,8 +4,8 @@
     backup_user: "{{ admin_user }}"
     backup_group: sudo
 
-    backup_mysql_user: "{{ mysql_backup_user }}"
-    backup_mysql_pass: "{{ vault_mysql_backup_password }}"
+    backup_mysql_user: ""
+    backup_mysql_pass: ""
 
     # Define the backup jobs
     backup_profiles:
