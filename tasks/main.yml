@@ -1,8 +1,7 @@
 ---
 - name: List backup jobs
   set_fact:
-    backup_user: "{{ admin_user }}"
-    backup_group: sudo
+    backup_user: root
 
     backup_mysql_user: ""
     backup_mysql_pass: ""
