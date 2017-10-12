@@ -59,3 +59,7 @@
 
 - name: Configure backup jobs
   set_fact: backup_profiles="{{ backup_jobs.results | selectattr('ansible_facts', 'defined') | map(attribute='ansible_facts.backup_profiles.0') | list }} + {{ backup_jobs.results | selectattr('ansible_facts', 'defined') | map(attribute='ansible_facts.backup_profiles.1') | list }}"
+
+- name: Run backup role
+  include_role:
+    name: "lafranceinsoumise.backup"
