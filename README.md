@@ -1,6 +1,7 @@
 # trellis-backup-role
 
 This role is made to be used with [Trellis](https://roots.io/trellis/).
+
 It allows to set up automated backup using [duplicity](http://duplicity.nongnu.org/).
 
 ## Get Started
@@ -86,6 +87,18 @@ Once the profile are installed,
 sudo duply website_name_database restore
 sudo duply website_name_uploads restore
 ```
+
+## Changes in 2.0
+
+* paramiko dependency has been removed
+* you do not need anymore to list `Stouts.backup` role in `server.yml` playbook, as it is imported in the tasks
+* you need a recent version of Trellis because the role uses Mysql `auth_socket` plugin to connect to the database
+
+## SCP Support known issues
+
+To use SCP target, you need to have paramiko installed on your server.
+
+Paramiko automatic installation was removed in 2.0. If you need it, you should do it manually or by adding it to trellis tasks. However, there is a known issue where paramiko crash on `SendEnv` setting in the `ssh_config` created by Trellis.
 
 ## S3 Support
 
