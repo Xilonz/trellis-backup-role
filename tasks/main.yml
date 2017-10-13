@@ -1,4 +1,16 @@
 ---
+- name: Add duplicity repository
+  apt_repository:
+    repo: ppa:duplicity-team/ppa
+    state: present
+    update_cache: yes
+
+- name: Upgrade duplicity
+  apt:
+    name: duplicity
+    state: latest
+    only_upgrade: true
+
 - name: List backup jobs
   set_fact:
     backup_user: root
