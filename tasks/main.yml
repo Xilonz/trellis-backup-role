@@ -1,11 +1,11 @@
 ---
-- name: Add Duplicity repository
-  apt-repository:
+- name: Add duplicity repository
+  apt_repository:
     repo: ppa:duplicity-team/ppa
     state: present
     update_cache: yes
 
-- name: Upgrade Duplicity
+- name: Upgrade duplicity
   apt:
     name: duplicity
     state: latest
