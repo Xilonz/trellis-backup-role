@@ -11,10 +11,10 @@ Add the role and its dependencies to the `requirements.yml` file of Trellis :
 ```yaml
 - name: trellis-backup
   src: guilro.trellis-backup
-  version: 2.1.3
+  version: 2.1.4
 
 - name: lafranceinsoumise.backup
-  version: 3.6.3
+  version: 3.9.0
 ```
 
 Run `ansible-galaxy install -r requirements.yml` to install the new roles.
