@@ -13,8 +13,8 @@
         schedule: "{{ item.value.backup.schedule | default(omit) }}"
         source: "{{ www_root }}/{{ item.key }}/shared/uploads"
         target: "{{ item.value.backup.target }}/uploads"
-        target_user: "{{ site_env.backup_target_user | default(omit) }}"
-        target_pass: "{{ site_env.backup_target_pass | default(omit) }}"
+        target_user: "{{ site_env.backup_target_user | default(false) }}"
+        target_pass: "{{ site_env.backup_target_pass | default(false) }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
@@ -23,8 +23,8 @@
         schedule: "{{ item.value.backup.schedule | default(omit) }}"
         source: "mysql://{{ site_env.db_name }}"
         target: "{{ item.value.backup.target }}/database"
-        target_user: "{{ site_env.backup_target_user | default(omit) }}"
-        target_pass: "{{ site_env.backup_target_pass | default(omit) }}"
+        target_user: "{{ site_env.backup_target_user | default(false) }}"
+        target_pass: "{{ site_env.backup_target_pass | default(false) }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
