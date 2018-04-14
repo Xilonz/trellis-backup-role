@@ -2,7 +2,15 @@
 
 This role is made to be used with [Trellis](https://roots.io/trellis/).
 
-It allows to set up automated backup using [duplicity](http://duplicity.nongnu.org/).
+It allows to set up automated backup using [duply](https://duply.net/).
+
+It will :
+* install duplicity and duply
+* for each `wordpress_site` configured, it will install two duply profiles
+    * one for database
+    * one for uploads
+    
+It does not backup website code. If you need to restore, you must first deploy your website on a new server, and then restore your database and uploads.
 
 ## Get Started
 
@@ -67,7 +75,7 @@ Read [all duplicity URL formats (and potential targets)](http://duplicity.nongnu
 
 ### vault.yml
 
-Add credentials to vault.yml
+Add your backup target credentials to `vault.yml` (depending on your target, it can be S3 keys, FTP credentials, or nothing if you backup locally...). You can also embed your credential in target URL, but using `vault.yml` method is safer.
 
 <pre>
 example.com:
@@ -79,7 +87,7 @@ example.com:
 
 ## Restore
 
-Once the profile are installed,
+Once the profiles are installed, you can backup and restore easily from the server. `website_name` is you website name in `wordpress_sites.yml` with dots replaced by underscores (`example_com`). You can use `ls /etc/duply` if you are not sure about your duply profiles names.
 
 ```bash
 sudo duply website_name_database restore
