@@ -15,7 +15,7 @@
         target: "{{ item.value.backup.target }}/uploads"
         target_user: "{{ site_env.backup_target_user | default(false) }}"
         target_pass: "{{ site_env.backup_target_pass | default(false) }}"
-        max_age: "{{ item.value.backup.max_age | default(1M) }}"
+        max_age: "{{ item.value.backup.max_age | default('1M') }}"
         max_full_backups: "{{ item.value.backup.max_full_backups | default(1) }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
