@@ -16,7 +16,7 @@
         target_user: "{{ site_env.backup_target_user | default(false) }}"
         target_pass: "{{ site_env.backup_target_pass | default(false) }}"
         max_age: "{{ item.value.backup.max_age | default('1M') }}"
-        max_fullbkp_age: "{{ item.value.backup.max_fullbkp_age | default('1M') }}"
+        full_max_age: "{{ item.value.backup.full_max_age | default('1M') }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
@@ -28,7 +28,7 @@
         target_user: "{{ site_env.backup_target_user | default(false) }}"
         target_pass: "{{ site_env.backup_target_pass | default(false) }}"
         max_age: "{{ item.value.backup.max_age | default('1M') }}"
-        max_fullbkp_age: "{{ item.value.backup.max_fullbkp_age | default('1M') }}"
+        full_max_age: "{{ item.value.backup.full_max_age | default('1M') }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
