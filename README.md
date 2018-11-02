@@ -65,7 +65,7 @@ wordpress_sites:
       <b>schedule: '0 4 * * *' # cron time of backups (change this value)</b>
       <b>purge: false # switch to true to enable automatic purging of old backups</b>
       <b>max_age: 1M # time frame for old backups to keep, Used for the "purge" command.</b>
-      <b>max_fullbkp_age: 1M # forces a full backup if last full backup reaches this age.</b>
+      <b>full_max_age: 1M # forces a full backup if last full backup reaches this age.</b>
 </pre>
 
 You can set `enabled: true` and `auto: false` to install duply profiles
