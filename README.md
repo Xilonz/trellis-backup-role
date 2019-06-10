@@ -1,3 +1,5 @@
+**NOT MAINTANED :** I don't use trellis anymore, so I am not maintaining this role anymore. It should however still work as long as trellis does not introduce any breaking change. If you're willing to replace me and take the project maintenance, please open an issue.
+
 # trellis-backup-role
 
 This role is made to be used with [Trellis](https://roots.io/trellis/).
