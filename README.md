@@ -1,3 +1,5 @@
+> :warning: **This role was moved and renamed!**: Make sure to update your `galaxy.yml` (or `requirements.yml` if you have an older Trellis version).
+
 # trellis-backup-role
 
 This role is made to be used with [Trellis](https://roots.io/trellis/).
@@ -17,7 +19,7 @@ It does not backup website code. If you need to restore, you must first deploy y
 Add the role and its dependencies to the `requirements.yml` file of Trellis :
 
 ```yaml
-- name: trellis_backup
+- name: backup
   src: xilonz.trellis_backup
   version: 2.1.5
 ```
@@ -29,7 +31,7 @@ Then, add the roles to the `server.yml` :
 ```yaml
 roles:
   ... other Trellis roles ...
-  - { role: trellis-backup, tags: [backup] }
+  - { role: backup, tags: [backup] }
 ```
 
 ## Role Variables
@@ -130,4 +132,4 @@ MIT
 ## Authors
 This role was primarily developed by [Jill Royer](https://github.com/jillro), and is currently maintained by [Arjan Steenbergen](https://github.com/Xilonz).
 
-This role requires the ansible-backup role by [La France insoumise](https://github.com/lafranceinsoumise/ansible-backup) as noted in [Get Started](#get-started)
+This role requires the ansible-backup role by [La France insoumise](https://github.com/lafranceinsoumise/ansible-backup). This should be installed by ansible automatically.
