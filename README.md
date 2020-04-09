@@ -17,8 +17,8 @@ It does not backup website code. If you need to restore, you must first deploy y
 Add the role and its dependencies to the `requirements.yml` file of Trellis :
 
 ```yaml
-- name: trellis-backup
-  src: xilonz.trellis-backup
+- name: trellis_backup
+  src: xilonz.trellis_backup
   version: 2.1.5
 ```
 
@@ -55,14 +55,14 @@ wordpress_sites:
       provider: letsencrypt
     cache:
       enabled: false
-+    backup:
-+      enabled: true
-+      auto: true
-+      target: scp://user@example.com/example.com_backups # any location supported by duplicity
-+      schedule: '0 4 * * *' # cron time of backups (change this value)
-+      purge: false # switch to true to enable automatic purging of old backups
-+      max_age: 1M # time frame for old backups to keep, Used for the "purge" command.
-+      full_max_age: 1M # forces a full backup if last full backup reaches this age.
++   backup:
++     enabled: true
++     auto: true
++     target: scp://user@example.com/example.com_backups # any location supported by duplicity
++     schedule: '0 4 * * *' # cron time of backups (change this value)
++     purge: false # switch to true to enable automatic purging of old backups
++     max_age: 1M # time frame for old backups to keep, Used for the "purge" command.
++     full_max_age: 1M # forces a full backup if last full backup reaches this age.
 ```
 
 You can set `enabled: true` and `auto: false` to install duply profiles
