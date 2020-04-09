@@ -1,4 +1,4 @@
-**NOT MAINTAINED :** I don't use trellis anymore, so I am not maintaining this role anymore. It should however still work as long as trellis does not introduce any breaking change. If you're willing to replace me and take the project maintenance, please open an issue.
+> :warning: **This role was moved and renamed!**: Make sure to update your `galaxy.yml` (or `requirements.yml` if you have an older Trellis version).
 
 # trellis-backup-role
 
@@ -19,21 +19,19 @@ It does not backup website code. If you need to restore, you must first deploy y
 Add the role and its dependencies to the `requirements.yml` file of Trellis :
 
 ```yaml
-- name: trellis-backup
-  src: guilro.trellis-backup
-  version: 2.1.4
-
-- name: lafranceinsoumise.backup
+- name: backup
+  src: xilonz.trellis_backup
+  version: 2.1.5
 ```
 
-Run `ansible-galaxy install -r requirements.yml` to install the new roles.
+Run `ansible-galaxy install -r galaxy.yml` to install the new roles.
 
 Then, add the roles to the `server.yml` :
 
 ```yaml
 roles:
   ... other Trellis roles ...
-  - { role: trellis-backup, tags: [backup] }
+  - { role: backup, tags: [backup] }
 ```
 
 ## Role Variables
@@ -41,7 +39,7 @@ roles:
 The role will read from the `wordpress_sites` dict in Trellis.
 
 ### Example :
-<pre>
+```diff
 wordpress_sites:
   example.com:
     site_hosts:
@@ -59,15 +57,15 @@ wordpress_sites:
       provider: letsencrypt
     cache:
       enabled: false
-    <b>backup:</b>
-      <b>enabled: true</b>
-      <b>auto: true</b>
-      <b>target: scp://user@example.com/example.com_backups # any location supported by duplicity</b>
-      <b>schedule: '0 4 * * *' # cron time of backups (change this value)</b>
-      <b>purge: false # switch to true to enable automatic purging of old backups</b>
-      <b>max_age: 1M # time frame for old backups to keep, Used for the "purge" command.</b>
-      <b>full_max_age: 1M # forces a full backup if last full backup reaches this age.</b>
-</pre>
++   backup:
++     enabled: true
++     auto: true
++     target: scp://user@example.com/example.com_backups # any location supported by duplicity
++     schedule: '0 4 * * *' # cron time of backups (change this value)
++     purge: false # switch to true to enable automatic purging of old backups
++     max_age: 1M # time frame for old backups to keep, Used for the "purge" command.
++     full_max_age: 1M # forces a full backup if last full backup reaches this age.
+```
 
 You can set `enabled: true` and `auto: false` to install duply profiles
 but not actually scheduling backups. This way, you can for example restore your
@@ -80,13 +78,16 @@ Read [all duplicity URL formats (and potential targets)](http://duplicity.nongnu
 
 Add your backup target credentials to `vault.yml` (depending on your target, it can be S3 keys, FTP credentials, or nothing if you backup locally...). You can also embed your credential in target URL, but using `vault.yml` method is safer.
 
-<pre>
+```
 example.com:
   env:
     backup_target_user: user
     backup_target_pass: password
-</pre>
+```
 
+## Provisioning the server
+
+Run `trellis provision --tags backup environment` or `ansible-playbook server.yml -e env=environment --tags backup` when to run this role.
 
 ## Restore
 
@@ -115,19 +116,20 @@ There is a known issue when uploading to S3 buckets that only accept V4
 signatures. In order to successfully upload, you'll need to add a little bit to
 your `wordpress_sites.yml`'s `backup:` key:
 
-<pre>
+```diff
 wordpress_sites:
   example.com:
-    <b>backup:</b>
-      <b># ... </b>
-      <b>params:</b>
-        <b>- 'export S3_USE_SIGV4="True"'</b>
-</pre>
+    backup:
+      ...
++     params:
++       - 'export S3_USE_SIGV4="True"'
+```
 
 ## License
 
 MIT
 
-## Author
+## Authors
+This role was primarily developed by [Jill Royer](https://github.com/jillro), and is currently maintained by [Arjan Steenbergen](https://github.com/Xilonz).
 
-(C) [Guillaume Royer](https://github.com/guilro) 2017.
+This role requires the ansible-backup role by [La France insoumise](https://github.com/lafranceinsoumise/ansible-backup). This should be installed by ansible automatically.

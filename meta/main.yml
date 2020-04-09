@@ -1,13 +1,21 @@
 ---
-galaxy_info:
-  author: Guillaume Royer
-  description: Install automated backups on Trellis
-  license: "MIT"
-  min_ansible_version: 2.2
-  platforms:
-  - name: Ubuntu
-    versions:
-    - xenial
-  categories:
-  - development
-  - web
+  galaxy_info:
+    role_name: trellis_backup
+    author: Arjan Steenbergen
+    description: Install automated backups on Trellis using duply
+    license: "MIT"
+    min_ansible_version: 2.2
+    platforms:
+    - name: Ubuntu
+      versions:
+      - xenial
+    categories:
+    - development
+    - web
+    galaxy_tags:
+    - trellis
+    - backup
+    - duply
+    - wordpress
+  dependencies:
+  - lafranceinsoumise.backup
