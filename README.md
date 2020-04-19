@@ -16,7 +16,7 @@ It does not backup website code. If you need to restore, you must first deploy y
 
 ## Get Started
 
-Add the role and its dependencies to the `requirements.yml` file of Trellis :
+Add the role and its dependencies to the `galaxy.yml` file of Trellis :
 
 ```yaml
 - name: backup
