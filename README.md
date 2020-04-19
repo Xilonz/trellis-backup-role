@@ -72,7 +72,7 @@ but not actually scheduling backups. This way, you can for example restore your
 production database on staging. You will have the same duply profiles in staging
 and production, but only the production server actually creating the backups.
 
-Read [all duplicity URL formats (and potential targets)](http://duplicity.nongnu.org/duplicity.1.html#sect7).
+Read [all duplicity URL formats (and potential targets)](http://duplicity.nongnu.org/vers8/duplicity.1.html#sect7).
 
 ### vault.yml
 
