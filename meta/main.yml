@@ -18,4 +18,5 @@
     - duply
     - wordpress
   dependencies:
-  - lafranceinsoumise.backup
+  - name: lafranceinsoumise.backup
+    version: 3.9.0
