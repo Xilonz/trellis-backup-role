@@ -5,6 +5,7 @@
 
     backup_mysql_user: ""
     backup_mysql_pass: ""
+    backup_mysql_host: "{{ site_env.db_host | default('') }}"
 
     # Define the backup jobs
     backup_profiles:
@@ -17,6 +18,7 @@
         target_pass: "{{ site_env.backup_target_pass | default(false) }}"
         max_age: "{{ item.value.backup.max_age | default('1M') }}"
         full_max_age: "{{ item.value.backup.full_max_age | default('1M') }}"
+        max_full_backups: "{{ item.value.backup.max_full_backups | default('1') }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
@@ -29,6 +31,7 @@
         target_pass: "{{ site_env.backup_target_pass | default(false) }}"
         max_age: "{{ item.value.backup.max_age | default('1M') }}"
         full_max_age: "{{ item.value.backup.full_max_age | default('1M') }}"
+        max_full_backups: "{{ item.value.backup.max_full_backups | default('1') }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
 
