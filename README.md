@@ -65,6 +65,7 @@ wordpress_sites:
 +     purge: false # switch to true to enable automatic purging of old backups
 +     max_age: 1M # time frame for old backups to keep, Used for the "purge" command.
 +     full_max_age: 1M # forces a full backup if last full backup reaches this age.
++     max_full_backups: 1 # number of full backups to keep
 ```
 
 You can set `enabled: true` and `auto: false` to install duply profiles
