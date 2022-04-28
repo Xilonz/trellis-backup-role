@@ -9,7 +9,7 @@
 
     # Define the backup jobs
     backup_profiles:
-    # Backup uploads
+      # Backup uploads
       - name: "{{ item.key }}_uploads"
         schedule: "{{ item.value.backup.schedule | default(omit) }}"
         source: "{{ www_root }}/{{ item.key }}/shared/uploads"
@@ -21,8 +21,9 @@
         max_full_backups: "{{ item.value.backup.max_full_backups | default('1') }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
+        post_actions: "{{ item.value.backup.post_actions | default([]) }}"
 
-    # Backup database
+      # Backup database
       - name: "{{ item.key }}_database"
         schedule: "{{ item.value.backup.schedule | default(omit) }}"
         source: "mysql://{{ site_env.db_name }}"
@@ -34,6 +35,7 @@
         max_full_backups: "{{ item.value.backup.max_full_backups | default('1') }}"
         params: "{{ item.value.backup.params | default([]) }}"
         action: "{{ site_purge_backup | ternary('purge_backup --force', 'backup') }}"
+        post_actions: "{{ item.value.backup.post_actions | default([]) }}"
 
   when: site_uses_backup
   with_dict: "{{ wordpress_sites }}"
