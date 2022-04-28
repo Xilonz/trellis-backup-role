@@ -1,5 +1,3 @@
-> :warning: **This role was moved and renamed!**: Make sure to update your `galaxy.yml` (or `requirements.yml` if you have an older Trellis version).
-
 # trellis-backup-role
 
 This role is made to be used with [Trellis](https://roots.io/trellis/).
@@ -11,7 +9,7 @@ It will :
 * for each `wordpress_site` configured, it will install two duply profiles
     * one for database
     * one for uploads
-    
+
 It does not backup website code. If you need to restore, you must first deploy your website on a new server, and then restore your database and uploads.
 
 ## Get Started
@@ -21,7 +19,7 @@ Add the role and its dependencies to the `galaxy.yml` file of Trellis :
 ```yaml
 - name: backup
   src: xilonz.trellis_backup
-  version: 2.1.5
+  version: 2.1.7
 ```
 
 Run `ansible-galaxy install -r galaxy.yml` to install the new roles.
@@ -66,6 +64,8 @@ wordpress_sites:
 +     max_age: 1M # time frame for old backups to keep, Used for the "purge" command.
 +     full_max_age: 1M # forces a full backup if last full backup reaches this age.
 +     max_full_backups: 1 # number of full backups to keep
++     post_actions: # optional
++     - "curl -L http://your-custom-endpoint" # commands to run after backup is completed
 ```
 
 You can set `enabled: true` and `auto: false` to install duply profiles
